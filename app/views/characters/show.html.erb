@@ -1,0 +1,6 @@
+<h1><%= @character.name %></h1>
+
+<p>
+  <%= link_to "Traits", character_traits_path(@character.id)%>
+<p>
+  <%= link_to "Back", novel_characters_path %>

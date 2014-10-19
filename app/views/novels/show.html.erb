@@ -1,0 +1,14 @@
+<h1><%= @novel.title %></h1>
+
+<% if @novel.premise %>
+  Premise: <%= @novel.premise %>
+<% end %><br>
+
+<% if @novel.voice %>
+  Voice: <%= @novel.voice %>
+<% end %>
+
+<p>
+  <%= link_to "Characters", novel_characters_path(@novel.id) %>
+<p>
+  <%= link_to "Back", novels_path %>

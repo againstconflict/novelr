@@ -1,0 +1,22 @@
+<h1> Traits </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  
+  <% @traits.each do |trait| %>
+    <tr>
+      <td><%= link_to trait.name, [trait.character, trait] %></td>
+      <td><%= trait.description %></td>
+      <td><%= link_to "Edit", edit_character_trait_path(trait.character, trait) %></td>
+      <td><%= link_to "Destroy", [trait.character, trait], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to "New Trait", new_character_trait_path %>
+<p>
+  <%= link_to "Back", novel_character_path(@character.novel_id, @character.id) %>

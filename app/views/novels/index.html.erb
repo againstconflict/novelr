@@ -1,0 +1,17 @@
+<h1>Novels</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+  </tr>
+  
+  <% @novels.each do |novel| %>
+    <tr>
+      <td><%= link_to novel.title, novel %></td>
+      <td><%= link_to "Edit", edit_novel_path(novel) %></td>
+      <td><%= link_to "Destroy", novel_path(novel), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "New Novel", new_novel_path %>
