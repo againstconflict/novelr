@@ -3,4 +3,5 @@ class Novel < ActiveRecord::Base
   
   has_many :characters, dependent: :destroy
   has_many :scenes, dependent: :destroy
+  has_many :sequels, dependent: :destroy
 end

@@ -1,0 +1,20 @@
+<h1>Sequels</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  
+  <% @sequels.each do |sequel| %>
+    <tr>
+      <td><%= link_to sequel.name, [sequel.novel, sequel] %></td>
+      <td><%= link_to "Edit", edit_novel_sequel_path(sequel.novel, sequel) %></td>
+      <td><%= link_to "Destroy", [sequel.novel, sequel], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to "New Sequel", new_novel_sequel_path %>
+<p>
+  <%= link_to "Back", novel_path(params[:novel_id]) %>

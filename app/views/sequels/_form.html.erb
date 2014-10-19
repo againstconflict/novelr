@@ -1,0 +1,35 @@
+<%= form_for [@novel, @sequel] do |f| %>
+  <% if @sequel.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@sequel.errors.count, "error") %> prohibited this article from being saved:</h2>
+    <ul>
+    <% @sequel.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :emotion %><br>
+    <%= f.text_field :emotion %>
+  </p>
+  <p>
+    <%= f.label :logic %><br>
+    <%= f.text_field :logic %>
+  </p>
+  <p>
+    <%= f.label :decision %><br>
+    <%= f.text_field :decision %>
+  </p>
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
