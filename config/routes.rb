@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :novels do
     resources :characters
+    resources :scenes
   end
   
   resources :characters do
