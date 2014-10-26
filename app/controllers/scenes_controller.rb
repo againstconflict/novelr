@@ -16,7 +16,7 @@ class ScenesController < ApplicationController
     @scene = @novel.scenes.create(scene_params)
     
     if @scene.save
-      redirect_to novel_scenes_path
+      redirect_to novel_path(@novel.id)
     else
       render 'new'
     end
@@ -37,7 +37,7 @@ class ScenesController < ApplicationController
     @scene = @novel.scenes.find(params[:id])
     
     if @scene.update(scene_params)
-      redirect_to novel_scenes_path
+      redirect_to novel_path(@novel.id)
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class ScenesController < ApplicationController
     @scene = @novel.scenes.find(params[:id])
     @scene.destroy
     
-    redirect_to novel_scenes_path
+    redirect_to novel_path(@novel.id)
   end
   
   private

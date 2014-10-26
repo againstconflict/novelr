@@ -2,4 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to "Back", novel_scenes_path %>
+<%= link_to "Destroy", [@scene.novel, @scene], method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<p>
+<%= link_to "Back", novel_path(@novel.id) %>

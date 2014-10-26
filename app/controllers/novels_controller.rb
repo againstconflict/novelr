@@ -22,6 +22,7 @@ class NovelsController < ApplicationController
   def show
     @novel = Novel.find(params[:id])
     @characters = @novel.characters
+    @scenes = @novel.scenes
   end
   
   def edit

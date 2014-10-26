@@ -31,7 +31,7 @@
     <% end %>
     <tr> 
       <td>
-        <% character. traits.each do |trait| %>
+        <% character.traits.each do |trait| %>
           <tr>
             <td><%= link_to trait.name, edit_character_trait_path(trait.character, trait) %></td>
             <td><%= trait.description %></td>
@@ -45,8 +45,56 @@
 <p>
   <%= link_to "Add Character", new_novel_character_path(params[:id]) %>
   
+<h1>Scenes</h1>
+  
+<table>
+  
+  <% @scenes.each do |scene| %>
+    <%= form_for [@novel, scene] do |f| %>
+      <% if scene.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(scene.errors.count, "error") %> prohibited this article from being saved:</h2>
+        <ul>
+        <% scene.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <div>
+        <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
+      </div>
+      <div>
+        Goal:       
+        <%= scene.goal %>
+      </div>
+      <div>
+        Question:
+        <%= scene.question %>
+      </div>
+      <div>
+        Disaster:
+        <%= scene.disaster %>
+      </div>
+      <div>
+        Hanger:
+        <%= scene.hanger %>
+      </div>
+      <div>
+        <%= f.label 'Text:' %><br>
+        <%= f.text_area :text %>
+      </div>
+      <div>
+        <%= f.submit 'Save Text' %>
+      </div>
+    <% end %>
+    <br>
+  <% end %>
+</table>
+
 <p>
-  <%= link_to "Scenes", novel_scenes_path(@novel.id) %>
+  <%= link_to "Add Scene", new_novel_scene_path(params[:id]) %>
+
 <p>
   <%= link_to "Sequels", novel_sequels_path(@novel.id) %>
 <p>
