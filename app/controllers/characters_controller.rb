@@ -16,7 +16,7 @@ class CharactersController < ApplicationController
     @character = @novel.characters.create(character_params)
     
     if @character.save
-      redirect_to novel_characters_path
+      redirect_to novel_path(@novel.id)
     else
       render 'new'
     end
@@ -48,7 +48,7 @@ class CharactersController < ApplicationController
     @character = @novel.characters.find(params[:id])
     @character.destroy
     
-    redirect_to novel_characters_path
+    redirect_to novel_path(params[:novel_id])
   end
   
   private

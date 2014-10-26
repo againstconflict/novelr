@@ -9,7 +9,42 @@
 <% end %>
 
 <p>
-  <%= link_to "Characters", novel_characters_path(@novel.id) %>
+<%= link_to "Edit", edit_novel_path(@novel.id) %>
+  
+<h1>Characters</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @characters.each do |character| %>
+    <tr>
+      <td><%= link_to character.name, edit_novel_character_path(character.novel, character) %></td>
+      <td><%= link_to "Add Trait", new_character_trait_path(character.id) %></td>
+    </tr>
+    <% if Trait.where(character_id: character.id).exists? %>
+      <tr>
+        <td>Trait</td>
+        <td>Description</td>
+      </tr>
+    <% end %>
+    <tr> 
+      <td>
+        <% character. traits.each do |trait| %>
+          <tr>
+            <td><%= link_to trait.name, edit_character_trait_path(trait.character, trait) %></td>
+            <td><%= trait.description %></td>
+          </tr>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to "Add Character", new_novel_character_path(params[:id]) %>
+  
 <p>
   <%= link_to "Scenes", novel_scenes_path(@novel.id) %>
 <p>

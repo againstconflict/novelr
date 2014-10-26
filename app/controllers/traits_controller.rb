@@ -1,4 +1,5 @@
 class TraitsController < ApplicationController
+  http_basic_authenticate_with name: "alex", password: "jackjack"
 
   def index
     @character = Character.find(params[:character_id])
@@ -15,7 +16,7 @@ class TraitsController < ApplicationController
     @trait = @character.traits.create(trait_params)
     
     if @trait.save
-      redirect_to character_traits_path
+      redirect_to novel_path(@character.novel_id)
     else
       render 'new'
     end
@@ -36,7 +37,7 @@ class TraitsController < ApplicationController
     @trait = @character.traits.find(params[:id])
     
     if @trait.update(trait_params)
-      redirect_to character_traits_path
+      redirect_to novel_path(@character.novel_id)
     else
       render 'edit'
     end
@@ -47,7 +48,7 @@ class TraitsController < ApplicationController
     @trait = @character.traits.find(params[:id])
     @trait.destroy
     
-    redirect_to character_traits_path
+    redirect_to novel_path(@character.novel_id)
   end
 
   private
