@@ -16,7 +16,7 @@ class SequelsController < ApplicationController
     @sequel = @novel.sequels.create(sequel_params)
     
     if @sequel.save
-      redirect_to novel_sequels_path
+      redirect_to novel_path(@novel.id)
     else
       render 'new'
     end
@@ -37,7 +37,7 @@ class SequelsController < ApplicationController
     @sequel = @novel.sequels.find(params[:id])
     
     if @sequel.update(sequel_params)
-      redirect_to novel_sequels_path
+      redirect_to novel_path(@novel.id)
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class SequelsController < ApplicationController
     @sequel = @novel.sequels.find(params[:id])
     @sequel.destroy
     
-    redirect_to novel_sequels_path
+    redirect_to novel_path(@novel.id)
   end
   
   private
