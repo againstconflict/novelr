@@ -1,119 +1,125 @@
-<h1><%= @novel.title %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div data-spy="affix">
+        <h1><%= link_to @novel.title, edit_novel_path(@novel.id) %></h1>
 
-<% if @novel.premise %>
-  Premise: <%= @novel.premise %>
-<% end %><br>
+        <% if @novel.premise %>
+          Premise: <%= @novel.premise %>
+        <% end %><br>
 
-<% if @novel.voice %>
-  Voice: <%= @novel.voice %>
-<% end %>
+        <% if @novel.voice %>
+          Voice: <%= @novel.voice %>
+        <% end %>
 
-<p>
-<%= link_to "Edit", edit_novel_path(@novel.id) %>
-  
-<h1>Characters</h1>
+        <h1>Characters</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-  <% @characters.each do |character| %>
-    <tr>
-      <td><%= link_to character.name, edit_novel_character_path(character.novel, character) %></td>
-      <td><%= link_to "Add Trait", new_character_trait_path(character.id) %></td>
-    </tr>
-    <% if Trait.where(character_id: character.id).exists? %>
-      <tr>
-        <td>Trait</td>
-        <td>Description</td>
-      </tr>
-    <% end %>
-    <tr> 
-      <td>
-        <% character.traits.each do |trait| %>
+        <table>
           <tr>
-            <td><%= link_to trait.name, edit_character_trait_path(trait.character, trait) %></td>
-            <td><%= trait.description %></td>
+            <th>Name</th>
           </tr>
+
+          <% @characters.each do |character| %>
+            <tr>
+              <td><%= link_to character.name, edit_novel_character_path(character.novel, character) %></td>
+              <td><%= link_to "Add Trait", new_character_trait_path(character.id) %></td>
+            </tr>
+            <% if Trait.where(character_id: character.id).exists? %>
+              <tr>
+                <td>Trait</td>
+                <td>Description</td>
+              </tr>
+            <% end %>
+            <tr> 
+              <td>
+                <% character.traits.each do |trait| %>
+                  <tr>
+                    <td><%= link_to trait.name, edit_character_trait_path(trait.character, trait) %></td>
+                    <td><%= trait.description %></td>
+                  </tr>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+
+        <p>
+          <%= link_to "Add Character", new_novel_character_path(params[:id]) %>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h1>Scenes</h1>
+
+      <table>
+        <% @scenes.each do |scene| %>
+          <%= form_for [@novel, scene] do |f| %>
+            <% if scene.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(scene.errors.count, "error") %> prohibited this article from being saved:</h2>
+              <ul>
+              <% scene.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+            <% end %>
+            <h2>
+              <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
+            </h2>
+            <h3>Conflict</h3>
+            <div>
+              Goal:       
+              <%= scene.goal %>
+            </div>
+            <div>
+              Question:
+              <%= scene.question %>
+            </div>
+            <div>
+              Disaster:
+              <%= scene.disaster %>
+            </div>
+            <div>
+              Hanger:
+              <%= scene.hanger %>
+            </div>
+            <div>
+              <%= f.label 'Text:' %><br>
+              <%= f.text_area :scene_text %>
+            </div>
+            <div>
+              <%= f.submit 'Save Text' %>
+            </div>
+            <h3>Sequel</h3>
+            <div>
+              Emotion:
+              <%= scene.emotion %>
+            </div>
+            <div>
+              Logic:
+              <%= scene.logic %>
+            </div>
+            <div>
+              Decision:
+              <%= scene.decision %>
+            </div>
+            <div>
+              <%= f.label 'Text:' %><br>
+              <%= f.text_area :sequel_text %>
+            </div>
+            <div>
+              <%= f.submit 'Save Text' %>
+            </div>
+          <% end %>
+          <br>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+      </table>
 
-<p>
-  <%= link_to "Add Character", new_novel_character_path(params[:id]) %>
-  
-<h1>Scenes</h1>
-  
-<table>
-  <% @scenes.each do |scene| %>
-    <%= form_for [@novel, scene] do |f| %>
-      <% if scene.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(scene.errors.count, "error") %> prohibited this article from being saved:</h2>
-        <ul>
-        <% scene.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-      <% end %>
-      <h2>
-        <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
-      </h2>
-      <h3>Scene</h3>
-      <div>
-        Goal:       
-        <%= scene.goal %>
-      </div>
-      <div>
-        Question:
-        <%= scene.question %>
-      </div>
-      <div>
-        Disaster:
-        <%= scene.disaster %>
-      </div>
-      <div>
-        Hanger:
-        <%= scene.hanger %>
-      </div>
-      <div>
-        <%= f.label 'Text:' %><br>
-        <%= f.text_area :scene_text %>
-      </div>
-      <div>
-        <%= f.submit 'Save Text' %>
-      </div>
-      <h3>Sequel</h3>
-      <div>
-        Emotion:
-        <%= scene.emotion %>
-      </div>
-      <div>
-        Logic:
-        <%= scene.logic %>
-      </div>
-      <div>
-        Decision:
-        <%= scene.decision %>
-      </div>
-      <div>
-        <%= f.label 'Text:' %><br>
-        <%= f.text_area :sequel_text %>
-      </div>
-      <div>
-        <%= f.submit 'Save Text' %>
-      </div>
-    <% end %>
-    <br>
-  <% end %>
-</table>
+      <p>
+        <%= link_to "Add Scene", new_novel_scene_path(params[:id]) %>
 
-<p>
-  <%= link_to "Add Scene", new_novel_scene_path(params[:id]) %>
-
-<p>
-  <%= link_to "Back", novels_path %>
+      <p>
+        <%= link_to "Back", novels_path %>
+    </div>
+  </div>
+</div>
