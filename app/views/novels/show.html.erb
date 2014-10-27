@@ -48,7 +48,6 @@
 <h1>Scenes</h1>
   
 <table>
-  
   <% @scenes.each do |scene| %>
     <%= form_for [@novel, scene] do |f| %>
       <% if scene.errors.any? %>
@@ -61,9 +60,10 @@
         </ul>
       </div>
       <% end %>
-      <div>
+      <h2>
         <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
-      </div>
+      </h2>
+      <h3>Scene</h3>
       <div>
         Goal:       
         <%= scene.goal %>
@@ -82,7 +82,27 @@
       </div>
       <div>
         <%= f.label 'Text:' %><br>
-        <%= f.text_area :text %>
+        <%= f.text_area :scene_text %>
+      </div>
+      <div>
+        <%= f.submit 'Save Text' %>
+      </div>
+      <h3>Sequel</h3>
+      <div>
+        Emotion:
+        <%= scene.emotion %>
+      </div>
+      <div>
+        Logic:
+        <%= scene.logic %>
+      </div>
+      <div>
+        Decision:
+        <%= scene.decision %>
+      </div>
+      <div>
+        <%= f.label 'Text:' %><br>
+        <%= f.text_area :sequel_text %>
       </div>
       <div>
         <%= f.submit 'Save Text' %>
@@ -94,52 +114,6 @@
 
 <p>
   <%= link_to "Add Scene", new_novel_scene_path(params[:id]) %>
-
-<h1>Sequels</h1>
-  
-<table>
-  
-  <% @sequels.each do |sequel| %>
-    <%= form_for [@novel, sequel] do |f| %>
-      <% if sequel.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(sequel.errors.count, "error") %> prohibited this article from being saved:</h2>
-        <ul>
-        <% sequel.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-      <% end %>
-      <div>
-        <%= link_to sequel.name, edit_novel_sequel_path(sequel.novel, sequel) %>
-      </div>
-      <div>
-        Emotion:       
-        <%= sequel.emotion %>
-      </div>
-      <div>
-        Logic:
-        <%= sequel.logic %>
-      </div>
-      <div>
-        Decision:
-        <%= sequel.decision %>
-      </div>
-      <div>
-        <%= f.label 'Text:' %><br>
-        <%= f.text_area :text %>
-      </div>
-      <div>
-        <%= f.submit 'Save Text' %>
-      </div>
-    <% end %>
-    <br>
-  <% end %>
-</table>
-
-<p>
-  <%= link_to "Add Sequel", new_novel_sequel_path(params[:id]) %>
 
 <p>
   <%= link_to "Back", novels_path %>

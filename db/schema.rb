@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026192600) do
+ActiveRecord::Schema.define(version: 20141027150600) do
 
   create_table "characters", force: true do |t|
     t.string   "name"
@@ -39,23 +39,14 @@ ActiveRecord::Schema.define(version: 20141026192600) do
     t.integer  "novel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "text"
-  end
-
-  add_index "scenes", ["novel_id"], name: "index_scenes_on_novel_id"
-
-  create_table "sequels", force: true do |t|
-    t.string   "name"
+    t.string   "scene_text"
     t.string   "emotion"
     t.string   "logic"
     t.string   "decision"
-    t.integer  "novel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "text"
+    t.string   "sequel_text"
   end
 
-  add_index "sequels", ["novel_id"], name: "index_sequels_on_novel_id"
+  add_index "scenes", ["novel_id"], name: "index_scenes_on_novel_id"
 
   create_table "traits", force: true do |t|
     t.string  "name"
