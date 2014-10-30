@@ -16,5 +16,31 @@
 
 <p>
   <%= link_to "New Scene", new_novel_scene_path %>
+  
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scenes.each do |scene| %>
+      <tr data-item-id=<%= "#{scene.id}" %> class="item">
+        <td>
+          <%= scene.name %>
+        </td>
+        <td>
+          <%= link_to 'show', scene_path(scene), :class => 'btn btn-default pull-right' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  
 <p>
   <%= link_to "Back", novel_path(params[:novel_id]) %>

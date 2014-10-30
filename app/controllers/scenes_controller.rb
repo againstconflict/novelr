@@ -51,8 +51,21 @@ class ScenesController < ApplicationController
     redirect_to novel_path(@novel.id)
   end
   
+  def update_row_order
+    @scene = Scene.find(params[:scene][:scene_id])
+    @scene.row_order_position = scene_params[:row_order_position]
+    @scene.save
+    
+    render nothing: true
+  end
+  
   private
+  
+    def set_scene
+      @scene = Scene.find(params[:scene][:scene_id])
+    end
+    
     def scene_params
-      params.require(:scene).permit(:name, :goal, :question, :disaster, :hanger, :scene_text, :emotion, :logic, :decision, :sequel_text)
+      params.require(:scene).permit(:scene_id, :name, :goal, :question, :disaster, :hanger, :scene_text, :emotion, :logic, :decision, :sequel_text, :row_order_position)
     end
 end

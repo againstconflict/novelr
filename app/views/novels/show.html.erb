@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-5">
       <div data-spy="affix">
         <h1><%= link_to @novel.title, edit_novel_path(@novel.id) %></h1>
 
@@ -47,70 +47,74 @@
           <%= link_to "Add Character", new_novel_character_path(params[:id]) %>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-7">
       <h1>Scenes</h1>
 
-      <table>
+      <table class="table table-bordered table-striped" id="sortable">
         <% @scenes.each do |scene| %>
-          <%= form_for [@novel, scene] do |f| %>
-            <% if scene.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(scene.errors.count, "error") %> prohibited this article from being saved:</h2>
-              <ul>
-              <% scene.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+          <tr data-item-id=<%= "#{scene.id}" %> class="item">
+            <td>
+              <%= form_for [@novel, scene] do |f| %>
+                <% if scene.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(scene.errors.count, "error") %> prohibited this article from being saved:</h2>
+                  <ul>
+                  <% scene.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                </div>
+                <% end %>
+                <h2>
+                  <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
+                </h2>
+                <h3>Conflict</h3>
+                <div>
+                  Goal:       
+                  <%= scene.goal %>
+                </div>
+                <div>
+                  Question:
+                  <%= scene.question %>
+                </div>
+                <div>
+                  Disaster:
+                  <%= scene.disaster %>
+                </div>
+                <div>
+                  Hanger:
+                  <%= scene.hanger %>
+                </div>
+                <div>
+                  <%= f.label 'Text:' %><br>
+                  <%= f.text_area :scene_text %>
+                </div>
+                <div>
+                  <%= f.submit 'Save Text' %>
+                </div>
+                <h3>Sequel</h3>
+                <div>
+                  Emotion:
+                  <%= scene.emotion %>
+                </div>
+                <div>
+                  Logic:
+                  <%= scene.logic %>
+                </div>
+                <div>
+                  Decision:
+                  <%= scene.decision %>
+                </div>
+                <div>
+                  <%= f.label 'Text:' %><br>
+                  <%= f.text_area :sequel_text %>
+                </div>
+                <div>
+                  <%= f.submit 'Save Text' %>
+                </div>
               <% end %>
-              </ul>
-            </div>
-            <% end %>
-            <h2>
-              <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
-            </h2>
-            <h3>Conflict</h3>
-            <div>
-              Goal:       
-              <%= scene.goal %>
-            </div>
-            <div>
-              Question:
-              <%= scene.question %>
-            </div>
-            <div>
-              Disaster:
-              <%= scene.disaster %>
-            </div>
-            <div>
-              Hanger:
-              <%= scene.hanger %>
-            </div>
-            <div>
-              <%= f.label 'Text:' %><br>
-              <%= f.text_area :scene_text %>
-            </div>
-            <div>
-              <%= f.submit 'Save Text' %>
-            </div>
-            <h3>Sequel</h3>
-            <div>
-              Emotion:
-              <%= scene.emotion %>
-            </div>
-            <div>
-              Logic:
-              <%= scene.logic %>
-            </div>
-            <div>
-              Decision:
-              <%= scene.decision %>
-            </div>
-            <div>
-              <%= f.label 'Text:' %><br>
-              <%= f.text_area :sequel_text %>
-            </div>
-            <div>
-              <%= f.submit 'Save Text' %>
-            </div>
-          <% end %>
+            </td>
+          </tr>
           <br>
         <% end %>
       </table>

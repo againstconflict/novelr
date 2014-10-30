@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :traits
   end
   
+  resources :scenes do
+    post :update_row_order, on: :collection
+  end
+  
   root 'novels#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -22,7 +22,7 @@ class NovelsController < ApplicationController
   def show
     @novel = Novel.find(params[:id])
     @characters = @novel.characters
-    @scenes = @novel.scenes
+    @scenes = @novel.scenes.rank(:row_order)
   end
   
   def edit

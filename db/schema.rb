@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027150600) do
+ActiveRecord::Schema.define(version: 20141027232100) do
 
   create_table "characters", force: true do |t|
     t.string   "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20141027150600) do
     t.string   "logic"
     t.string   "decision"
     t.string   "sequel_text"
+    t.integer  "row_order"
   end
 
   add_index "scenes", ["novel_id"], name: "index_scenes_on_novel_id"
