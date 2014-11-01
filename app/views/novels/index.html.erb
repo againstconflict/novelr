@@ -1,15 +1,14 @@
-<h1>Novels</h1>
+<div class="container-fluid">
+  <table class="table">
+    <caption><h1>Novels</h1></caption>
+    <tbody>
+      <% @novels.each do |novel| %>
+        <tr>
+          <td><%= link_to novel.title, novel %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<table>
-  <tr>
-    <th>Title</th>
-  </tr>
-  
-  <% @novels.each do |novel| %>
-    <tr>
-      <td><%= link_to novel.title, novel %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to "New Novel", new_novel_path %>
+  <p><%= link_to "New Novel", new_novel_path %></p>
+</div>
