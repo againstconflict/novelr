@@ -49,10 +49,13 @@
     </div>
     <div class="col-md-7">
       <h1>Scenes</h1>
-
-      <table class="table table-bordered table-striped" id="sortable">
+      
+      <table class="table" id="sortable">
         <% @scenes.each do |scene| %>
           <tr data-item-id=<%= "#{scene.id}" %> class="item">
+            <td>
+              <button class="glyphicon glyphicon-plus" data-toggle="collapse" data-target=<%= "##{scene.id}" %>></button>
+            </td>
             <td>
               <%= form_for [@novel, scene] do |f| %>
                 <% if scene.errors.any? %>
@@ -68,50 +71,52 @@
                 <h2>
                   <%= link_to scene.name, edit_novel_scene_path(scene.novel, scene) %>
                 </h2>
-                <h3>Conflict</h3>
-                <div>
-                  Goal:       
-                  <%= scene.goal %>
-                </div>
-                <div>
-                  Question:
-                  <%= scene.question %>
-                </div>
-                <div>
-                  Disaster:
-                  <%= scene.disaster %>
-                </div>
-                <div>
-                  Hanger:
-                  <%= scene.hanger %>
-                </div>
-                <div>
-                  <%= f.label 'Text:' %><br>
-                  <%= f.text_area :scene_text %>
-                </div>
-                <div>
-                  <%= f.submit 'Save Text' %>
-                </div>
-                <h3>Sequel</h3>
-                <div>
-                  Emotion:
-                  <%= scene.emotion %>
-                </div>
-                <div>
-                  Logic:
-                  <%= scene.logic %>
-                </div>
-                <div>
-                  Decision:
-                  <%= scene.decision %>
-                </div>
-                <div>
-                  <%= f.label 'Text:' %><br>
-                  <%= f.text_area :sequel_text %>
-                </div>
-                <div>
-                  <%= f.submit 'Save Text' %>
-                </div>
+                  <div class="collapse out" id=<%= "#{scene.id}" %>>
+                    <h3>Conflict</h3>
+                    <div>
+                      Goal:       
+                      <%= scene.goal %>
+                    </div>
+                    <div>
+                      Question:
+                      <%= scene.question %>
+                    </div>
+                    <div>
+                      Disaster:
+                      <%= scene.disaster %>
+                    </div>
+                    <div>
+                      Hanger:
+                      <%= scene.hanger %>
+                    </div>
+                    <div>
+                      <%= f.label 'Text:' %><br>
+                      <%= f.text_area :scene_text %>
+                    </div>
+                    <div>
+                      <%= f.submit 'Save Text' %>
+                    </div>
+                    <h3>Sequel</h3>
+                    <div>
+                      Emotion:
+                      <%= scene.emotion %>
+                    </div>
+                    <div>
+                      Logic:
+                      <%= scene.logic %>
+                    </div>
+                    <div>
+                      Decision:
+                      <%= scene.decision %>
+                    </div>
+                    <div>
+                      <%= f.label 'Text:' %><br>
+                      <%= f.text_area :sequel_text %>
+                    </div>
+                    <div>
+                      <%= f.submit 'Save Text' %>
+                    </div>
+                  </div>
               <% end %>
             </td>
           </tr>
