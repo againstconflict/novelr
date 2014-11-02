@@ -1,6 +1,6 @@
 <div class="container-fluid">
     
-  <div class="col-md-4">
+  <div class="col-md-3">
     
     <table class="table">
       <caption><h1><%= link_to @novel.title, edit_novel_path(@novel.id) %></h1></caption>
@@ -61,7 +61,7 @@
       
   </div>
   
-  <div class="col-md-8">
+  <div class="col-md-9">
     
     <table class="table" id="sortable">
       <caption><h1>Scenes</h1></caption>
@@ -70,7 +70,7 @@
           <th>Scene</th>
           <th colspan="4">Conflict</th>
           <th colspan="3">Sequel</th>
-          <th colspan="2">Text</th>
+          <th colspan="3">Text</th>
         </tr>
         <tr>
           <th>Name</th>
@@ -83,6 +83,7 @@
           <th>Decision</th>
           <th>Conflict Text</th>
           <th>Sequel Text</th>
+          <th>Save</th>
         </tr>
       </thead>
       <tbody>
@@ -97,12 +98,9 @@
             <td><%= scene.logic %></td>
             <td><%= scene.decision %></td>
             <%= form_for [@novel, scene] do |f| %>
-              <td><%= f.text_area :scene_text %></td>
-              <td>
-                <%= f.text_area :sequel_text %>
-                <%= f.submit 'Save' %>
-              </td>
-              </td>
+              <td><%= f.text_area :conflict_text %></td>
+              <td><%= f.text_area :sequel_text %></td>
+              <td><%= f.submit 'Save' %></td>
             <% end %>
           </tr>
         <% end %>
