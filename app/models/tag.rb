@@ -1,4 +1,4 @@
-class Character < ActiveRecord::Base
+class Tag < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :novel_id
   

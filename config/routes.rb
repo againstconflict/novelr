@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   
   resources :novels do
-    resources :characters
+    resources :tags
     resources :scenes
     resources :sequels
   end
   
-  resources :characters do
+  resources :tags do
     resources :traits
   end
   

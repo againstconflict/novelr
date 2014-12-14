@@ -21,7 +21,7 @@ class NovelsController < ApplicationController
   
   def show
     @novel = Novel.find(params[:id])
-    @characters = @novel.characters
+    @tags = @novel.tags
     @scenes = @novel.scenes.rank(:row_order)
   end
   
@@ -48,7 +48,7 @@ class NovelsController < ApplicationController
   
   private
     def novel_params
-      params.require(:novel).permit(:title, :premise, :voice)
+      params.require(:novel).permit(:title)
     end
 
 end

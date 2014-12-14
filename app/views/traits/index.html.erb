@@ -8,15 +8,15 @@
   
   <% @traits.each do |trait| %>
     <tr>
-      <td><%= link_to trait.name, [trait.character, trait] %></td>
+      <td><%= link_to trait.name, [trait.tag, trait] %></td>
       <td><%= trait.description %></td>
-      <td><%= link_to "Edit", edit_character_trait_path(trait.character, trait) %></td>
-      <td><%= link_to "Destroy", [trait.character, trait], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "Edit", edit_tag_trait_path(trait.tag, trait) %></td>
+      <td><%= link_to "Destroy", [trait.tag, trait], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
 
 <p>
-  <%= link_to "New Trait", new_character_trait_path %>
+  <%= link_to "New Trait", new_tag_trait_path %>
 <p>
-  <%= link_to "Back", novel_character_path(@character.novel_id, @character.id) %>
+  <%= link_to "Back", novel_tag_path(@tag.novel_id, @tag.id) %>

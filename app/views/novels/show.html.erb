@@ -2,50 +2,40 @@
     
   <div class="col-md-3">
     
-    <table class="table">
-      <caption><h1><%= link_to @novel.title, edit_novel_path(@novel.id) %></h1></caption>
-      <thead>
-        <th>Premise</th>
-        <th>Voice</th>
-      </thead>
-      <tbody>
-        <td><%= @novel.premise %></td>
-        <td><%= @novel.voice %></td>
-      </tbody>
-    </table>
+    <h1><%= link_to @novel.title, edit_novel_path(@novel.id) %></h1>
 
     <table class="table">
-      <caption><h1>Characters</h1></caption>
+      <caption><h1>Tags</h1></caption>
       <thead>
         <th>Name</th>
         <th>Trait</th>
         <th>Description</th>
       </thead>
       <tbody>
-        <% @characters.each do |character| %>
+        <% @tags.each do |tag| %>
           <tr>
             <td>
               <table>
                 <tr>
-                  <th><%= link_to character.name, edit_novel_character_path(character.novel, character) %></th>
+                  <th><%= link_to tag.name, edit_novel_tag_path(tag.novel, tag) %></th>
                 </tr>
                 <tr>
-                  <td><%= link_to "Add Trait", new_character_trait_path(character.id) %></td>
+                  <td><%= link_to "Add Trait", new_tag_trait_path(tag.id) %></td>
                 </tr>
               </table>
             </td>
             <td>
               <table>
-                <% character.traits.each do |trait| %>
+                <% tag.traits.each do |trait| %>
                   <tr>
-                    <td><%= link_to trait.name, edit_character_trait_path(trait.character, trait) %></td>
+                    <td><%= link_to trait.name, edit_tag_trait_path(trait.tag, trait) %></td>
                   </tr>
                 <% end %>
               </table>
             </td>
             <td>
               <table>
-                <% character.traits.each do |trait| %>
+                <% tag.traits.each do |trait| %>
                   <tr>
                     <td><%= trait.description %></td>
                   </tr>
@@ -57,7 +47,7 @@
       </tbody>
     </table>
 
-    <p><%= link_to "Add Character", new_novel_character_path(params[:id]) %></p>
+    <p><%= link_to "Add Tag", new_novel_tag_path(params[:id]) %></p>
       
   </div>
   

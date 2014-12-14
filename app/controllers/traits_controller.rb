@@ -2,53 +2,53 @@ class TraitsController < ApplicationController
   http_basic_authenticate_with name: "alex", password: "jackjack"
 
   def index
-    @character = Character.find(params[:character_id])
-    @traits = @character.traits
+    @tag = Tag.find(params[:tag_id])
+    @traits = @tag.traits
   end
   
   def new
-    @character = Character.find(params[:character_id])
-    @trait = @character.traits.new
+    @tag = Tag.find(params[:tag_id])
+    @trait = @tag.traits.new
   end
 
   def create
-    @character = Character.find(params[:character_id])
-    @trait = @character.traits.create(trait_params)
+    @tag = Tag.find(params[:tag_id])
+    @trait = @tag.traits.create(trait_params)
     
     if @trait.save
-      redirect_to novel_path(@character.novel_id)
+      redirect_to novel_path(@tag.novel_id)
     else
       render 'new'
     end
   end
 
   def show
-    @character = Character.find(params[:character_id])
-    @trait = @character.traits.find(params[:id])
+    @tag = Tag.find(params[:tag_id])
+    @trait = @tag.traits.find(params[:id])
   end
   
   def edit
-    @character = Character.find(params[:character_id])
-    @trait = @character.traits.find(params[:id])
+    @tag = Tag.find(params[:tag_id])
+    @trait = @tag.traits.find(params[:id])
   end
   
   def update
-    @character = Character.find(params[:character_id])
-    @trait = @character.traits.find(params[:id])
+    @tag = Tag.find(params[:tag_id])
+    @trait = @tag.traits.find(params[:id])
     
     if @trait.update(trait_params)
-      redirect_to novel_path(@character.novel_id)
+      redirect_to novel_path(@tag.novel_id)
     else
       render 'edit'
     end
   end
   
   def destroy
-    @character = Character.find(params[:character_id])
-    @trait = @character.traits.find(params[:id])
+    @tag = Tag.find(params[:tag_id])
+    @trait = @tag.traits.find(params[:id])
     @trait.destroy
     
-    redirect_to novel_path(@character.novel_id)
+    redirect_to novel_path(@tag.novel_id)
   end
 
   private

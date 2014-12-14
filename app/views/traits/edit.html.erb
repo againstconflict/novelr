@@ -1,8 +1,8 @@
-<h1>Edit <%= @character.name %></h1>
+<h1>Edit <%= @tag.name %></h1>
 
 <%= render 'form' %>
 
-<%= link_to "Destroy", [@trait.character, @trait], method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to "Destroy", [@trait.tag, @trait], method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <p>
-<%= link_to "Back", novel_path(@character.novel_id) %>
+<%= link_to "Back", novel_path(@tag.novel_id) %>

@@ -1,21 +1,21 @@
-class CharactersController < ApplicationController
+class TagsController < ApplicationController
   http_basic_authenticate_with name: "alex", password: "jackjack"
   
   def index
     @novel = Novel.find(params[:novel_id])
-    @characters = @novel.characters
+    @tags = @novel.tags
   end
   
   def new
     @novel = Novel.find(params[:novel_id])
-    @character = @novel.characters.new
+    @tag = @novel.tags.new
   end
   
   def create
     @novel = Novel.find(params[:novel_id])
-    @character = @novel.characters.create(character_params)
+    @tag = @novel.tags.create(tag_params)
     
-    if @character.save
+    if @tag.save
       redirect_to novel_path(@novel.id)
     else
       render 'new'
@@ -24,20 +24,20 @@ class CharactersController < ApplicationController
   
   def show
     @novel = Novel.find(params[:novel_id])
-    @character = @novel.characters.find(params[:id])
+    @tag = @novel.tags.find(params[:id])
   end
   
   def edit
     @novel = Novel.find(params[:novel_id])
-    @character = @novel.characters.find(params[:id])
+    @tag = @novel.tags.find(params[:id])
   end
   
   def update
     @novel = Novel.find(params[:novel_id])
-    @character = @novel.characters.find(params[:id])
+    @tag = @novel.tags.find(params[:id])
     
-    if @character.update(character_params)
-      redirect_to novel_characters_path
+    if @tag.update(tag_params)
+      redirect_to novel_tags_path
     else
       render 'edit'
     end
@@ -45,14 +45,14 @@ class CharactersController < ApplicationController
   
   def destroy
     @novel = Novel.find(params[:novel_id])
-    @character = @novel.characters.find(params[:id])
-    @character.destroy
+    @tag = @novel.tags.find(params[:id])
+    @tag.destroy
     
     redirect_to novel_path(params[:novel_id])
   end
   
   private
-    def character_params
-      params.require(:character).permit(:name)
+    def tag_params
+      params.require(:tag).permit(:name)
     end
 end

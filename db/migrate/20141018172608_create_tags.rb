@@ -1,6 +1,6 @@
-class CreateCharacters < ActiveRecord::Migration
+class CreateTags < ActiveRecord::Migration
   def change
-    create_table :characters do |t|
+    create_table :tags do |t|
       t.string :name
       t.references :novel, index: true
 

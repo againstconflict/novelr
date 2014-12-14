@@ -1,0 +1,8 @@
+<h1>Edit <%= @tag.name %></h1>
+
+<%= render 'form' %>
+
+<%= link_to "Destroy Tag", [@tag.novel, @tag], method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<p>
+<%= link_to "Back", novel_path(@novel.id) %>

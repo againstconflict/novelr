@@ -13,21 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20141102000900) do
 
-  create_table "characters", force: true do |t|
-    t.string   "name"
-    t.integer  "novel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "characters", ["novel_id"], name: "index_characters_on_novel_id"
-
   create_table "novels", force: true do |t|
     t.string   "title"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "premise"
-    t.string   "voice"
   end
 
   create_table "scenes", force: true do |t|
@@ -49,12 +39,21 @@ ActiveRecord::Schema.define(version: 20141102000900) do
 
   add_index "scenes", ["novel_id"], name: "index_scenes_on_novel_id"
 
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.integer  "novel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["novel_id"], name: "index_tags_on_novel_id"
+
   create_table "traits", force: true do |t|
     t.string  "name"
     t.string  "description"
-    t.integer "character_id"
+    t.integer "tag_id"
   end
 
-  add_index "traits", ["character_id"], name: "index_traits_on_character_id"
+  add_index "traits", ["tag_id"], name: "index_traits_on_tag_id"
 
 end

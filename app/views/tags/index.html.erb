@@ -1,0 +1,20 @@
+<h1>Tags</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  
+  <% @tags.each do |tag| %>
+    <tr>
+      <td><%= link_to tag.name, [tag.novel, tag] %></td>
+      <td><%= link_to "Edit", edit_novel_tag_path(tag.novel, tag) %></td>
+      <td><%= link_to "Destroy", [tag.novel, tag], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to "New Tag", new_novel_tag_path %>
+<p>
+  <%= link_to "Back", novel_path(params[:novel_id]) %>

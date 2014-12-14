@@ -3,7 +3,7 @@ class CreateTraits < ActiveRecord::Migration
     create_table :traits do |t|
       t.string :name
       t.string :description
-      t.references :character, index: true
+      t.references :tag, index: true
     end
   end
 end
