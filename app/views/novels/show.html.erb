@@ -4,43 +4,22 @@
     
     <table class="table">
       <caption><h1>Tags</h1></caption>
-      <thead>
-        <th>Name</th>
-        <th>Trait</th>
-        <th>Description</th>
-      </thead>
       <tbody>
         <% @tags.each do |tag| %>
           <tr>
-            <td>
-              <table>
-                <tr>
-                  <th><%= link_to tag.name, edit_novel_tag_path(tag.novel, tag) %></th>
-                </tr>
-                <tr>
-                  <td><%= link_to "Add Trait", new_tag_trait_path(tag.id) %></td>
-                </tr>
-              </table>
-            </td>
-            <td>
-              <table>
-                <% tag.traits.each do |trait| %>
-                  <tr>
-                    <td><%= link_to trait.name, edit_tag_trait_path(trait.tag, trait) %></td>
-                  </tr>
-                <% end %>
-              </table>
-            </td>
-            <td>
-              <table>
-                <% tag.traits.each do |trait| %>
-                  <tr>
-                    <td><%= trait.description %></td>
-                  </tr>
-                <% end %>
-              </table>
-            </td>
+            <th>
+              <%= link_to tag.name, edit_novel_tag_path(tag.novel, tag) %>
+              <%= link_to "(add trait)", new_tag_trait_path(tag.id) %>
+            </th>
           </tr>
+          <% tag.traits.each do |trait| %>
+            <tr>
+              <td><%= link_to trait.name, edit_tag_trait_path(trait.tag, trait) %></td>
+            </tr>
+            <tr>
+              <td><%= trait.description %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
