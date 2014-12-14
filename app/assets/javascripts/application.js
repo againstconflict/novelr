@@ -16,4 +16,7 @@
 //= require jquery-ui/effect-highlight
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require lib/underscore-min
+//= require lib/backbone-min
+//= require lib/etch
 //= require_tree .
