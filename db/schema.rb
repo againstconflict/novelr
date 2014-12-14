@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102000900) do
+ActiveRecord::Schema.define(version: 20141019111050) do
 
   create_table "novels", force: true do |t|
     t.string   "title"
@@ -19,25 +19,6 @@ ActiveRecord::Schema.define(version: 20141102000900) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "scenes", force: true do |t|
-    t.string   "name"
-    t.string   "goal"
-    t.string   "question"
-    t.string   "disaster"
-    t.string   "hanger"
-    t.integer  "novel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "conflict_text"
-    t.string   "emotion"
-    t.string   "logic"
-    t.string   "decision"
-    t.string   "sequel_text"
-    t.integer  "row_order"
-  end
-
-  add_index "scenes", ["novel_id"], name: "index_scenes_on_novel_id"
 
   create_table "tags", force: true do |t|
     t.string   "name"

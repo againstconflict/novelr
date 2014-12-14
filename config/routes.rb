@@ -2,16 +2,10 @@ Rails.application.routes.draw do
   
   resources :novels do
     resources :tags
-    resources :scenes
-    resources :sequels
   end
   
   resources :tags do
     resources :traits
-  end
-  
-  resources :scenes do
-    post :update_row_order, on: :collection
   end
   
   root 'novels#index'
